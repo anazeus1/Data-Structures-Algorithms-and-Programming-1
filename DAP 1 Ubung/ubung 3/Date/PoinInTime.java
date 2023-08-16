@@ -5,23 +5,37 @@ public class PoinInTime {
     private int year;
 
     public PoinInTime(int y, int t, int h) {
-        if (y > 999 & y < 10000 & t > 0 & h > 0) {
-            hour = h % 24;
-            day = (t + h / 24) % 365;
-            year = y + day / 365;
-            if (year < 999 | year > 10000) {
-                throw new IllegalArgumentException();
-
-            }
+        if (y > 999 && y < 10000 && t > 0 && t < 366 && h >= 0 && h < 24) {
+            hour = h;
+            day = t;
+            year = y;
 
         } else {
-            throw new IllegalArgumentException();
+            hour = 0;
+            day = 0;
+            year = 0;
         }
 
     }
 
     public String toString() {
-        return (year + "/" + day + "/" + hour);
+
+        String d, h;
+        if (day < 10) {
+            d = "00" + day;
+
+        } else if (day < 100) {
+            d = "0" + day;
+        } else {
+            d = "" + day;
+        }
+        if (hour < 10) {
+            h = "0" + hour;
+
+        } else {
+            h = "" + hour;
+        }
+        return (year + "/" + d + "/" + h);
     }
 
     public PoinInTime clone() {

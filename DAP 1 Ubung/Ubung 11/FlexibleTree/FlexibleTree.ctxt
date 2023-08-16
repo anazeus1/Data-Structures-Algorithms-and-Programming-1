@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=s
+comment0.target=FlexibleTree(FlexibleTree.CounterStrategy)
+comment1.params=
+comment1.target=boolean\ isEmptyNode()
+comment10.params=
+comment10.target=void\ show()
+comment2.params=
+comment2.target=boolean\ isEmpty()
+comment3.params=
+comment3.target=boolean\ isLeaf()
+comment4.params=t
+comment4.target=void\ add(java.lang.Comparable)
+comment5.params=t
+comment5.target=int\ getQuantity(java.lang.Comparable)
+comment6.params=t
+comment6.target=boolean\ contains(java.lang.Comparable)
+comment7.params=t
+comment7.target=java.lang.Comparable\ get(java.lang.Comparable)
+comment8.params=t
+comment8.target=void\ delete(java.lang.Comparable)
+comment9.params=
+comment9.target=int\ size()
+numComments=11

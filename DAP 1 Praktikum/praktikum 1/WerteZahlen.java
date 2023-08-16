@@ -1,9 +1,62 @@
 public class WerteZahlen {
 
+    public static int interval(int a, int b) {
+        int sum = 0;
+        if (a > b) {
+            for (int i = b; i <= a; i++) {
+                sum += i;
+
+            }
+
+        } else {
+            for (int i = a; i <= b; i++) {
+                sum += i;
+            }
+        }
+
+        return sum;
+    }
+
+    public static int digitSum(int x) {
+        int sum = 0;
+        x = Math.abs(x);
+        while (x > 0) {
+            sum += x % 10;
+            x = x / 10;
+        }
+        return sum;
+    }
+
+    public static String digitToString(int n) {
+        if (n < 0 || n > 9) {
+            return "";
+        }
+        String[] numbers = { "null", "eins", "zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun" };
+        return numbers[n];
+
+    }
+
+    public static String intToString(int z) {
+        String result = "";
+        String minus = "";
+        if (z < 0) {
+            minus = "minus-";
+            z = -z;
+        }
+
+        while (z > 9) {
+            int digit = z % 10;
+            result = "-" + digitToString(digit) + result;
+            z = z / 10;
+
+        }
+        return minus + digitToString(z % 10) + result;
+    }
+
     public static void main(String[] args) {
 
         int[] arr = { 1 };
-        boolean count = twoTimes(arr);
+        String count = intToString(0);
 
         System.out.println(count);
 

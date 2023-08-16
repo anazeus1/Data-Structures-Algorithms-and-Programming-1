@@ -4,82 +4,66 @@ public class Box {
     private double tiefe;
 
     public Box(double h, double b, double t) {
-        hohe = h;
-        breite = b;
-        tiefe = t;
+        if (h >= 0 && b >= 0 && t >= 0) {
+            hohe = h;
+            breite = b;
+            tiefe = t;
+
+        } else {
+            hohe = 0;
+            breite = 0;
+            tiefe = 0;
+        }
 
     }
 
-    public double getHeight() {
-        return hohe;
-    }
-
-    public double getwidth() {
+    public double getbreite() {
         return breite;
     }
 
-    public double getdeep() {
+    public double gethohe() {
+        return hohe;
+    }
+
+    public double gettiefe() {
         return tiefe;
     }
 
     public double getVolumeSize() {
-        return breite * tiefe * hohe;
+        return breite * hohe * tiefe;
     }
 
     public double getAreaSize() {
-        return breite * hohe;
-
+        return 2 * (breite * hohe + breite * tiefe + hohe * tiefe);
     }
 
     public double getEdgesLength() {
-        return (breite + hohe + tiefe) * 4;
+        return 4 * (breite + hohe + tiefe);
     }
 
     public boolean isCube() {
-        return (hohe == breite) & (breite == tiefe);
+        return (breite == hohe) && (breite == tiefe);
     }
 
-    public int compareTo(Box other) {
-        double diff = getVolumeSize() - other.getVolumeSize();
-        if (diff < 0) {
+    public int compareTo(Box f) {
+        double v1 = getVolumeSize();
+        double v2 = f.getVolumeSize();
+        if (v1 > v2) {
+            return 1;
+        } else if (v1 == v2) {
+            return 0;
+        } else {
             return -1;
         }
-        if (diff > 0) {
-            return 1;
-        }
-        return 0;
     }
 
-    public boolean enclose(Box other) {
-        Box a = sortBox();
-        Box b = other.sortBox();
-
-        if (b.hohe <= a.hohe & b.tiefe <= a.tiefe & b.breite <= a.breite) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public Box sortBox() {
-        if (hohe >= breite & hohe >= tiefe) {
-            if (breite >= tiefe) {
-                return new Box(hohe, breite, tiefe);
-            }
-            return new Box(hohe, tiefe, breite);
-        }
-        if (hohe <= tiefe & tiefe >= breite) {
-            if (hohe >= breite) {
-                return new Box(tiefe, hohe, breite);
-            }
-            return new Box(tiefe, breite, hohe);
-        }
-        if (breite >= hohe & breite >= tiefe) {
-            if (tiefe >= hohe) {
-                return new Box(breite, tiefe, hohe);
-            }
-        }
-        return new Box(breite, hohe, tiefe);
-
+    public boolean encloses(Box f) {
+        // teste alle moeglichen Kombinationen
+        return (breite >= f.breite && hohe >= f.hohe && tiefe >= f.tiefe)
+                || (breite >= f.breite && hohe >= f.tiefe && tiefe >= f.hohe)
+                || (breite >= f.hohe && hohe >= f.breite && tiefe >= f.tiefe)
+                || (breite >= f.hohe && hohe >= f.tiefe && tiefe >= f.breite)
+                || (breite >= f.tiefe && hohe >= f.breite && tiefe >= f.hohe)
+                || (breite >= f.tiefe && hohe >= f.hohe && tiefe >= f.breite);
     }
 }

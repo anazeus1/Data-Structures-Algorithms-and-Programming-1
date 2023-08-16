@@ -19,8 +19,8 @@ public class Test {
         dap1.add(s3);
         dap1.add(s2);
         dap1.add(s1);
-        dap1.swapSortByName();
-        ;
+        int[] steps = { 5, 1 };
+        dap1.improvedInsertionSortByName(steps);
         dap1.show();
 
     }

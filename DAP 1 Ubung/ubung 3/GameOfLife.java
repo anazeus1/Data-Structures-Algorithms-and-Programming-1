@@ -11,7 +11,7 @@ public class GameOfLife {
                 { true, true, true, false },
                 { true, false, false, false },
                 { true, true, false, false } };
-        GameOfLife g1 = new GameOfLife(population);
+        GameOfLife g1 = new GameOfLife(population.length);
         g1.futureGeneration(2);
         g1.show();
 
@@ -25,7 +25,7 @@ public class GameOfLife {
     }
 
     // return the next state of a given cell
-    public boolean nextState(int i, int j) {
+    private boolean nextState(int i, int j) {
         int nbAliveNeighbors = getAliveNeighbors(i, j);
 
         // if its dead and have 3 alive neighbors it becomes alive else it stays dead

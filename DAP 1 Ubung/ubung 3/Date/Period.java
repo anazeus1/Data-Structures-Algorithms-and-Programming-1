@@ -22,7 +22,12 @@ public class Period {
     }
 
     public Period(int m) {
-        this(m, 0);
+        if (m < 0) {
+            minutes = 0;
+        } else {
+            minutes = m;
+
+        }
 
     }
 
@@ -55,7 +60,7 @@ public class Period {
 
         else {
             minute = "";
-            ;
+
         }
         return stunde + h + ":" + minute + m;
     }

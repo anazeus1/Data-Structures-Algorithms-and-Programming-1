@@ -206,6 +206,9 @@ public class LectureWithSortAlgorithms {
                     notSorted = true;
                 }
             }
+            if (!notSorted) {
+                return;
+            }
             if (notSorted) {
                 for (int i = firstUnused - 1; i > 0; i--) {
                     if (students[i - 1].hasGreaterName(students[i])) {
@@ -216,6 +219,45 @@ public class LectureWithSortAlgorithms {
             }
 
         }
+    }
+
+    public void improvedInsertionSortByName(int[] steps) {
+        checkSteps(steps);
+        for (int i = 0; i < steps.length; i++) {
+            insertionSort(steps[i]);
+        }
+    }
+
+    private void checkSteps(int[] steps) {
+        if (steps.length == 0) {
+            throw new RuntimeException("Steps must contain at least one value");
+        }
+        if (steps[steps.length - 1] != 1) {
+            throw new RuntimeException("Steps last value must be 1");
+        }
+        for (int i = 1; i < steps.length; i++) {
+            if (steps[i] > steps[i - 1]) {
+                throw new RuntimeException("Steps must be in descending order");
+            }
+        }
+    }
+
+    private void insertionSort(int step) {
+        for (int offset = 0; offset < step; offset++) {
+            for (int i = step + offset; i < firstUnused; i += step) {
+                shiftStudentsByName(i, step);
+            }
+        }
+    }
+
+    private void shiftStudentsByName(int start, int step) {
+        Student toInsert = students[start];
+        int i = start;
+        while (i >= step && students[i - step].hasGreaterName(toInsert)) {
+            students[i] = students[i - step];
+            i -= step;
+        }
+        students[i] = toInsert;
     }
 
 }
